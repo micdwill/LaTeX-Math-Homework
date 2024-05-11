@@ -1,0 +1,103 @@
+\usepackage[tmargin=0.5in,rmargin=0.75in,lmargin=0.75in,bmargin=0.5in]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  linkcolor={black},
+  citecolor={black},
+  urlcolor={blue!80!black}
+}
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\setlist[enumerate]{label=(\alph*)}
+
+\definecolor{mycolor}{RGB}{90, 177, 200}
+\definecolor{lightcolor}{RGB}{250, 254, 255}
+\newtcolorbox{mybox}[1][]{%
+    colback=lightcolor,
+    colframe=mycolor,
+}
+
+\usepackage{pifont}
+
+% Define a command for rating stars
+\newcommand{\Rating}[1]{%
+    \hspace{-1em}%
+    \foreach \n in {1,...,#1}{\ding{72}\hspace{0.1em}}%
+}
+
+% Define the rating environment
+\newenvironment{rating}{%
+    \par
+    \vspace{\baselineskip}
+    \begin{center}
+    \begin{tcolorbox}[colback=lightcolor,colframe=mycolor, boxrule=0.5mm, boxsep=3mm, left=2mm, right=2mm, top=0.0mm, bottom=2mm, width=2.3in, height=.4in]
+        \textbf{Proof Difficulty:} \hspace{0.5em}%
+}{%
+    \end{tcolorbox}
+    \end{center}
+    \vspace{\baselineskip}
+    \par
+}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\R{\mathbb{R}}
+\newcommand\Z{\mathbb{Z}}
+\renewcommand\O{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\C{\mathcal{C}}
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+
+\newcommand\subs{_{n_k}}
+\newcommand\inv{^{-1}}
+
+% theorems
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=0.5em,skipbelow=0.5em, innertopmargin=5pt, innerbottommargin=5pt}
+\pagestyle{empty}
+\usepackage{siunitx}
+\usepackage{diagbox}
+\usepackage{multicol}
+
+\theoremstyle{definition}
+
+\makeatletter
+
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont, mdframed={ nobreak } ]{thmgreenbox}
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont, mdframed={ nobreak } ]{thmredbox}
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont]{thmbluebox}
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont]{thmblueline}
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont, numbered=no, mdframed={ rightline=false, topline=false, bottomline=false}, qed=\qedsymbol]{thmproofbox}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ nobreak, rightline=false, topline=false, bottomline=false } ]{thmexplanationbox}
+
+\declaretheorem[numberwithin=section, style=thmgreenbox, name=Definition]{definition}
+\declaretheorem[sibling=definition, style=thmredbox, name=Corollary]{corollary}
+\declaretheorem[sibling=definition, style=thmredbox, name=Proposition]{prop}
+\declaretheorem[sibling=definition, style=thmredbox, name=Theorem]{theorem}
+\declaretheorem[sibling=definition, style=thmredbox, name=Lemma]{lemma}
+
+\declaretheorem[numbered=no, style=thmexplanationbox, name=Proof]{explanation}
+\declaretheorem[numbered=no, style=thmproofbox, name=Proof]{replacementproof}
+\declaretheorem[numbered=no, style=thmproofbox, name=Solution]{replacementsolution}
+\declaretheorem[style=thmbluebox,  numbered=no, name=Exercise]{ex}
+\declaretheorem[style=thmbluebox,  numbered=no, name=Example]{eg}
+\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
+
+\renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
+\renewenvironment{solution}{\begin{replacementsolution}}{\end{replacementsolution}}
+
+\newtheorem*{uovt}{UOVT}
+\newtheorem*{notation}{Notation}
+\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem{problem}{Problem}
+\newtheorem*{observe}{Observe}
+\newtheorem*{property}{Property}
+\newtheorem*{intuition}{Intuition}

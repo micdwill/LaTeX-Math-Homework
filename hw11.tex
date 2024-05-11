@@ -1,0 +1,284 @@
+\documentclass{exam}
+
+\input{../preamble.tex}
+\title{Math $451$ \\ Homework $11$}
+\author{Michael Williams}
+\date{Due: April $18^{\text{th}}$}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{problem}
+\end{problem}
+
+\begin{mybox}
+
+
+  \textbf{Simple L'Hospital:} Let $f, g : (a, b) \rightarrow \mathbb{R}$
+  be continuously differentiable and $c \in (a, b)$.
+  Assume that $f(c) = g(c) = 0$ and $g'(c) \neq 0$. Then
+  \[
+  \lim_{x \to c} \frac{f(x)}{g(x)} = \frac{f'(c)}{g'(c)}.
+  \]
+
+  \textbf{Remark:} The more general L'Hospital theorem does not require
+  $f, g$ to be defined at $c$, and allows $c = \pm\infty$.
+  The proof is more complicated. It can be found in Section 30 of our book.
+
+
+\end{mybox}
+
+\begin{proof}
+  Using the definition of the derivative we have 
+  $$\frac{f'(c)}{g'(c)} = \frac{\lim_{x\rightarrow c}
+  \frac{f(x)-f(c)}{x-c}}{\lim_{x\rightarrow c}\frac{g(x)-g(c)}{x-c}} =
+  lim_{x\rightarrow c}\frac{f(x)-f(c)}{g(x)-g(c)}$$
+  Since $f(c)=g(c)=0$ this is equivalent to $$\lim_{x \to c}
+   \frac{f(x)}{g(x)}$$
+\end{proof}
+
+\begin{rating}
+  \Rating{1}
+\end{rating}
+
+\begin{problem}
+\end{problem}
+
+\begin{mybox}
+ 
+  Is the function $$f(x) = \begin{cases} \sin\left(\frac{1}{x}\right),
+  & x \neq 0 \\ 0, & x = 0 \end{cases}$$ defined on the set $[-1, 1]$
+  Riemann-integrable? Prove your answer.
+  \\
+  
+  \textbf{Remark:} We have seen that wild oscillations are a problem for
+  continuity. Here you'll check if they are a problem for integrability.
+  
+\end{mybox}
+
+
+\begin{proof}
+  We will show $f(x)$ is Riemann-integrable. Let $\epsilon >0$. 
+  First notice that $|f| \leq 1$. Now choose some $c\in\R$ such that 
+  $c < \frac{\epsilon}{8}$. Now notice that $f|_{[-1,-c]}$ is continuous
+  so there is a partition $$P_1 :=( -1 =a_0^{P_1}, a_1^{P_1},
+  ..., a_{|P_1|}^{P_1}= -c)$$ with step functions $h_1$ and $h_2$ adapted
+  to $P_1$ such that $h_1 \leq f|_{[-1,-c]} \leq h_2$ where 
+  $$\int_{-1}^{-c}h_2(x)\, dx - \int_{-1}^{-c}h_1(x)\, dx < 
+  \frac{\epsilon}{4}$$ Similarily, $f|_{[c,1]}$ is continuous so there is
+  a partition $$P_2 := (c = a_0^{P_2}, a_1^{P_2}, ..., a_{|P_2|}^{P_2}= 1)$$
+  with step functions $h_3$ and $h_4$ adapted to $P_2$ such that 
+  $h_3 \leq f|_{[c,1]} \leq h_4$ where $$\int_{c}^{1}h_4(x)\, dx -
+  \int_{c}^{1}h_3(x)\, dx < \frac{\epsilon}{4}$$
+  
+  Now we will define $$P := P_1\cup P_2$$ Now we construct the step 
+  functions $h_5$ and $h_6$ adapted to $P$ such that 
+  \begin{align*} 
+    h_5\bigg|_{(a_i^P, a_{i+1}^P)} = 
+    \begin{cases} 
+      h_1|_{(a_i^P, a_{i+1}^P)}, & a_i^P < -c \\ 
+      \inf f([a_i^P, a_{i+1}^P]), & a_i^P= -c  \\ 
+      h_3|_{(a_i^P, a_{i+1}^P)}, & a_i^P > -c 
+    \end{cases}
+    \\ h_6\bigg|_{(a_i^P, a_{i+1}^P)} = 
+    \begin{cases}
+      h_2|_{(a_i^P, a_{i+1}^P)}, & a_i^P < -c \\
+      \sup f([a_i^P, a_{i+1}^P]), & a_i^P = -c  \\
+      h_4|_{(a_i^P, a_{i+1}^P)}, & a_i^P > -c 
+    \end{cases}
+  \end{align*} 
+  By construction we have $h_5 \leq f \leq h_6$. Now we can take 
+  \begin{align*}
+    \int_{-1}^{1}h_6(x)\, dx &- \int_{-1}^{1}h_5(x)\, dx \\
+    = \int_{-1}^{-c}h_2(x)\, dx + \sup f([-c, c])\cdot (c-(-c)) +
+    \int_{c}^{1}h_4(x)\, dx -& \left(\int_{-1}^{-c}h_1(x)\, dx +
+    \inf f([-c, c])\cdot(c-(-c)) +\int_{c}^{1}h_3(x)\, dx\right) \\
+    = \int_{-1}^{-c}h_2(x)\, dx - \int_{-1}^{-c}h_1(x)\, dx 
+    + \int_{c}^{1}h_4(x)\, dx &- \int_{c}^{1}h_3(x)\, dx + 2c \cdot
+    (\sup f([-c, c]) - \inf f([-c, c])) \\ < \ \frac{\epsilon}{4} +
+    \frac{\epsilon}{4} + 2\cdot(\frac{\epsilon}{8}) &\cdot 
+    (1 - (-1)) = \epsilon
+  \end{align*}
+  We can conclude that $f$ is Riemann-integrable.
+\end{proof}
+
+\begin{rating}
+  \Rating{4}
+\end{rating}
+
+\pagebreak
+
+\begin{problem}
+\end{problem}
+
+
+\begin{mybox}
+  
+  Let $f : [0, 1] \rightarrow \mathbb{R}$ be continuous.
+  \begin{enumerate}
+    \item[(a)] Assume $f(x) \geq 0$ for all $x$. Show that if
+    $\int_{0}^{1} f(x) \, dx = 0$ then $f(x) = 0$ for all $x$.
+    \item[(b)] Without assuming $f(x) \geq 0$ for all $x$, show
+    that if $\int_{a}^{b} f(x) \, dx = 0$ for all $0 \leq a < b \leq 1$
+    then $f(x) = 0$ for all $x$.
+  \end{enumerate}
+
+\end{mybox}
+
+\begin{proof}
+  \begin{enumerate} 
+    \item Let us assume, for the sake of contradiction, that there
+    exists some $c\in [0,1]$ such that $f(c)>0$. Consider some
+    $0 <\epsilon < f(c)$. First consider the case where $c\in(0,1)$.
+    By the continuity of $f$ we can find some $\delta >0$ such
+    that $$x\in (c-\delta, c+\delta)\subset (0,1)\implies 
+    |(f(x)-f(c))|< \epsilon \implies f(x) >0$$ We thus have
+    $$\int_{c-\delta}^{c+\delta}f(x) \, dx > 0$$ But since 
+    $f(x)\geq 0$ for all $x$ this implies that $$\int_0^1 f(x) \, 
+    dx >0$$ This is a contradiction. 
+    
+    In the case where $c=0$ we can just find some $\delta >0$ such
+    that $$x\in [c, c+\delta)\subset (0,1)\implies |(f(x)-f(c))|
+    < \epsilon \implies f(x) >0$$ We can then proceed with same logic
+    as above and find a contradiction.
+
+    In the case where $c=1$ we can just find some $\delta >0$ such
+    that $$x\in (c-\delta, c]\subset (0,1)\implies |(f(x)-f(c))|<
+    \epsilon \implies f(x) >0$$ We can then proceed with same logic
+    as above and find a contradiction.
+
+    In every case we have found a contradiction. Thus we can conclude
+    that $f(x) = 0$ for all $x$.
+
+    \item  Let us assume, for the sake of contradiction, that there
+    exists some $c\in[0, 1]$ such that $f(c) \neq 0$. Without loss
+    of generality, suppose that $f(c) > 0$; if $f(c) < 0$, we can
+    consider the function $-f$, which would still satisfy the
+    integral condition, and proceed analogously.
+    
+    First consider the case where $c\in (0,1)$.
+    Since $f$ is continuous, we can find some $\delta > 0$ such that
+    $$x\in (c-\delta, c+\delta)\subset (0,1)\implies |f(x)-f(c)| 
+    <\frac{f(c)}{2} \implies f(x) > \frac{f(c)}{2}$$
+      
+    Now we can take
+    \[
+    \int_{c - \delta}^{c + \delta} f(x) \, dx > \int_{c - \delta}
+    ^{c + \delta} \dfrac{f(c)}{2} \, dx = (2\delta) \cdot 
+    \dfrac{f(c)}{2} = \delta f(c) > 0
+    \]
+    This is a contradiction with our initial assumption.
+
+    Now in the case where $c=0$ we can find some $\delta>0$ such
+    that $$x\in [c, c+\delta)\subset (0,1)\implies |f(x)-f(c)|
+    <\frac{f(c)}{2} \implies f(x) > \frac{f(c)}{2}$$
+    We can then proceed with the same argument as above and find a
+    contradiction.
+
+    When $c=1$ we can find some $\delta>0$ such that $$x\in
+    (c-\delta, c]\subset (0,1)\implies |f(x)-f(c)| 
+    <\frac{f(c)}{2} \implies f(x) > \frac{f(c)}{2}$$
+    We can then proceed with the same argument as above and find a
+    contradiction.
+
+    In every case we have found a contradiction. Thus, we can
+    conclude $f(x) = 0$ for all $x$.
+  \end{enumerate}
+\end{proof}
+
+\begin{rating}
+  \Rating{4}
+\end{rating}
+
+\begin{problem}
+\end{problem}
+
+\begin{mybox}
+  
+  Prove that any continuous function $f : [a, b] \rightarrow 
+  \mathbb{R}$ is the uniform limit of a sequence of step functions.
+  \\
+
+  \textbf{Remark:} This gives a different look on the definition of
+  the integral as an approximation by integrals of step functions.
+  It turns out that the function itself is approximated by step
+  functions in a strong enough way.
+
+\end{mybox}
+
+\begin{proof}
+  We will construct $(f_n)$ as follows. For each $f_n$ consider
+  $\frac{1}{n}$. Since $f$ is continuous we can find some 
+  $\delta_n >0$ such that for all $x,y\in [a,b]$ we have 
+  $|x-y|<\delta_n \implies |f(x)-f(y)| <\frac{1}{n}$.
+
+  Now let $$s := \sup\{c\in\N : a+c\delta_n<b\}$$ For every 
+  $m\in\N_{\leq s}$ we define $x_m := a+ m\delta_n$ and $x_{s+1}:= b$.
+  Now we set $$f_n(x) = \begin{cases}f(x_m), & x_m \leq x < x_{m+1} \\
+  f(b), & x=b \end{cases}$$
+
+  We will now show that $f_n \rightarrow f$ uniformly. Let 
+  $\epsilon >0$ and by Arch Prop find some $N\in\N$ such that 
+  $\epsilon > \frac{1}{N}$. By construction $\forall n>N$ we have, 
+  $$|f_n(x) - f(x)| = |f(x-a)-f(x)| \text{ where } a<\delta_n$$ 
+  Furthermore, by construction we have $$|f(x-a)-f(x)| < \frac{1}{n} 
+  < \frac{1}{N} < \epsilon$$
+
+  We can conclude that $f_n \rightarrow f$ uniformly. Thus, any
+  continuous function $f : [a, b] \rightarrow \mathbb{R}$ is the
+  uniform limit of a sequence of step functions.
+\end{proof}
+
+\begin{rating}
+  \Rating{4}
+\end{rating}
+
+\pagebreak
+
+\begin{problem}
+\end{problem}
+
+\begin{mybox}
+
+  Prove the integral test for convergence of series: Let 
+  $f : [1, \infty) \rightarrow \mathbb{R}$ be a non-negative
+  monotonically decreasing function. Then $\sum_{n=1}^{\infty} f(n)$
+  converges if and only if $\int_{1}^{\infty} f(x) \, dx$ converges.
+
+\end{mybox}
+
+\begin{proof}
+  First assume that $\sum_{n=1}^{\infty} f(n)$ converges. Notice that
+  since $f$ is non-negative, we have $\sum_{n=1}^{\infty} f(n) \geq 0$.
+  Since $f$ is non-negative and monotonically decreasing we know for 
+  any $n\in\N$  $$f(n) = f(n)\cdot (n+1 - n) \geq \int_n^{n+1}f(x) \, 
+  dx = \int_n^{n+1}f(x) \, dx$$ Therefore we have 
+  $$\sum_{n=1}^{\infty} f(n)  \geq   \int_{1}^{\infty} f(x) \, dx$$
+  Since $f$ is non-negative, we also know $\int_{1}^{\infty} f(x) 
+  \, dx \geq 0$. Combining this with the fact that $\int_{1}^{\infty} 
+  f(x) \, dx$ is bounded above by $\sum_{n=1}^{\infty} f(n) \in\R$,
+  we can conclude that $\int_{1}^{\infty} f(x) \, dx$ converges.
+
+  Now assume that $\int_{1}^{\infty} f(x) \, dx$ converges. Notice that 
+  since $f$ is non-negative, we have $\int_1^{\infty} f(n) \geq 0$. 
+  Since $f$ is non-negative and monotonically decreasing we know for 
+  any $n\in\N$ $$\int_n^{n+1}f(x) \, dx \geq f(n+1)\cdot (n+1-n)= 
+  f(n+1)$$ Therefore we have $$\int_{1}^{\infty} f(x) \, dx \geq 
+  \sum_{n=2}^{\infty}f(n) \implies \int_{1}^{\infty} f(x) \, dx 
+  + f(1) \geq \sum_{n=1}^{\infty}f(n)$$ Since $f$ is non-negative, 
+  we also know $\sum_{n=1}^{\infty}f(n) \geq 0$. Combining this with 
+  the fact that $\sum_{n=1}^{\infty}f(n)$ is bounded above by 
+  $\int_{1}^{\infty} f(x) \, dx + f(1)\in\R$, we can conclude that 
+  $\sum_{n=1}^{\infty}f(n)$ converges.
+
+  We can conclude that $\sum_{n=1}^{\infty} f(n)$ converges if and 
+  only if $\int_{1}^{\infty} f(x) \, dx$ converges.
+\end{proof}
+
+\begin{rating}
+  \Rating{2}
+\end{rating}
+
+\end{document}
