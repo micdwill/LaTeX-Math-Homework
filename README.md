@@ -8,7 +8,7 @@ This repository provides a versatile and customizable LaTeX template for formatt
 
 - **Colored Boxes:** The `\begin{mybox} ... \end{mybox}` command creates a colored box around the enclosed content. The color can be easily adjusted by modifying the random number generator (RNG) settings in `preamble.tex`.
   
-- **Difficulty Rating:** Use the `\begin{rating} ... \rating{number} \end{rating}` command to assign and display a difficulty rating to proof problems, providing an intuitive way to indicate the complexity of each problem.
+- **Difficulty Rating:** Use the `\begin{rating} \rating{number} \end{rating}` command to assign and display a difficulty rating to proof problems, providing an intuitive way to indicate the complexity of each problem.
 
 ### Flexible Document Structure
 
