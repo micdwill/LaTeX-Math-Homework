@@ -38,14 +38,14 @@ git clone https://github.com/micdwill/LaTeX-Math-Homework.git
 Use a LaTeX editor or the command line to compile homework.tex into a PDF:
 
 ```bash
-latexmk -pdf homework.tex
+latexmk -pdf hw11.tex
 ```
 
 ## Usage
 
-**Editing `homework.tex`:**
+**Editing `hw11.tex`:**
 
-- Open `homework.tex` in your preferred LaTeX editor.
+- Open `hw11.tex` in your preferred LaTeX editor.
   
 - Replace placeholder text with your specific homework details, including the title, author, and problems.
   
